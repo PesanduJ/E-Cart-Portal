@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>E-Cart Portal</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">E-Cart Portal</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/}">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <br>
+      <h3>All Items</h3>
+      <br>
+    </div>
+    <div class="col-6 text-end">
+      <br>
+      <a class="btn btn-warning" th:href="@{/viewCart}">View Cart</a>
+      <br>
+    </div>
+  </div>
+
+  <table class = "table table-hover table-striped table-dark table-bordered">
+    <thead class= "table-dark">
+    <tr>
+      <th> Item Name </th>
+      <th> Selling Price </th>
+      <th> Units </th>
+      <th> Actions </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each = "item: ${itemList}">
+      <td th:text = "${item.name}"></td>
+      <td th:text = "${item.selling_price}"></td>
+      <td th:text = "${item.units}"></td>
+      <td align="center">
+        <form th:action="@{/addItemToCart/{id}(id=${item.id})}" method="post">
+          <input type="hidden" th:name="id" th:value="${item.id}"/>
+          <input type="hidden" th:name="name" th:value="${item.name}"/>
+          <input type="hidden" th:name="selling_price" th:value="${item.selling_price}"/>
+          <button type="submit" class="btn btn-warning">Add To Cart</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+</div>
+
+</body>
+</html>

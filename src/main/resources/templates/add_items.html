@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Items</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">E-Cart Portal (ADMIN)</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/soldItems}">Sold Items</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<div class  = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class="text-center"> Add New Items </h1>
+            <div class="card-body">
+                <form th:action="@{/addItem}" th:object="${item}" method="POST">
+
+                    <div class="from-group">
+                        <label> Item Name </label>
+                        <input
+                                type="text"
+                                name="name"
+                                th:field="*{name}"
+                                class="form-control"
+                        />
+                    </div>
+
+                    <div class="from-group">
+                        <label> Selling Price </label>
+                        <input
+                                type="number"
+                                name="selling_price"
+                                th:field="*{selling_price}"
+                                class="form-control"
+                        />
+                    </div>
+
+                    <div class="from-group">
+                        <label> Units </label>
+                        <input
+                                type="number"
+                                name="units"
+                                th:field="*{units}"
+                                class="form-control"
+                        />
+                    </div>
+
+                    <br>
+                    <div class="box-footer"  align="center">
+                        <button type="submit" class="btn btn-primary">
+                            Submit
+                        </button>
+
+                        <button type="reset" class="btn btn-secondary">
+                            Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
